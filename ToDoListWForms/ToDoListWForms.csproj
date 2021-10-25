@@ -10,4 +10,8 @@
     <DocumentationFile>D:\myStep\homework\ASP\21_09_12\ToDoListWFormsExam – копія\ToDoListWForms\ToDoListWForms.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoList.BL\ToDoList.BL.csproj" />
+  </ItemGroup>
+
 </Project>
