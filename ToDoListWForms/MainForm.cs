@@ -260,8 +260,8 @@ namespace ToDoListWForms
             {
                 SetTaskUpdate();
                 _ = await TaskUpdate?.Invoke();
+                radioButtonViewTask.Checked = true;
             }
-            radioButtonViewTask.Checked = true;
         }
 
         private void buttonRemoveTask_Click(object sender, EventArgs e)
