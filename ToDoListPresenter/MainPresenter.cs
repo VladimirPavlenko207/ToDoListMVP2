@@ -82,6 +82,7 @@ namespace ToDoListPresenter
             }
             messageService.ShowSimpleMessage($"Метка \"{tag.Name}\" успешно удалена.");
             Tags = await manager.LoadTagsAsync(url, Tags);
+            Tasks = await manager.LoadTasksAsync(url, Tasks);
             view.SetTags(Tags?.Select(t => t.Name).ToArray());
             ShowFilteredTasks();
             return true;
@@ -102,6 +103,7 @@ namespace ToDoListPresenter
             }
             messageService.ShowSimpleMessage($"Категория \"{category.Name}\" успешно удалена.");
             Categories = await manager.LoadCategoriesAsync(url, Categories);
+            Tasks = await manager.LoadTasksAsync(url, Tasks);
             view.SetCategories(Categories?.Select(c => c.Name).ToArray());
             ShowFilteredTasks();
             return true;
@@ -145,6 +147,7 @@ namespace ToDoListPresenter
             }
             messageService.ShowSimpleMessage($"Метка \"{tag.Name}\" успешно изменена на \"{tag.NewName}\".");
             Tags = await manager.LoadTagsAsync(url, Tags);
+            Tasks = await manager.LoadTasksAsync(url, Tasks);
             view.SetTags(Tags?.Select(t => t.Name).ToArray());
             ShowFilteredTasks();
             return true;
@@ -164,6 +167,7 @@ namespace ToDoListPresenter
             }
             messageService.ShowSimpleMessage($"Категория \"{category.Name}\" успешно изменена на \"{category.NewName}\".");
             Categories = await manager.LoadCategoriesAsync(url, Categories);
+            Tasks = await manager.LoadTasksAsync(url, Tasks);
             view.SetCategories(Categories?.Select(c => c.Name).ToArray());
             ShowFilteredTasks();
             return true;
@@ -171,7 +175,18 @@ namespace ToDoListPresenter
 
         private async void View_TotalLoading()
         {
-            Tags = await manager.LoadTagsAsync(url, Tags);
+            bool isConnected = false;
+            while (!isConnected)
+            {
+                Tags = await manager.LoadTagsAsync(url, Tags);
+                isConnected = Tags is not null;
+                if (!isConnected)
+                {
+                    var finish = messageService.ShowOkCancelMessage("Возможно нет соединения с сервером. Завершить работу?");
+                    if (finish) view.Exit();
+                }
+            }
+           
             Categories = await manager.LoadCategoriesAsync(url, Categories);
             Tasks = await manager.LoadTasksAsync(url, Tasks);
             view.SetTags(Tags?.Select(t => t.Name).ToArray());

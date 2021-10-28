@@ -16,6 +16,7 @@ namespace ToDoListPresenter
         void SetTags(string[] tagNames);
         void SetCategories(string[] categoryNames);
         void SetTasks(List<TaskResponseModel> tasks);
+        void Exit();
 
         event Action TotalLoading;
 

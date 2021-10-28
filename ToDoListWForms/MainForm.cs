@@ -106,6 +106,11 @@ namespace ToDoListWForms
                     );
             }
         }
+
+        public void Exit()
+        {
+            Application.Exit();
+        }
         #endregion
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -520,6 +525,7 @@ namespace ToDoListWForms
                     break;
             }
         }
+
         #endregion
 
     }
