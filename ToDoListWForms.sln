@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoListWForms", "ToDoListWForms\ToDoListWForms.csproj", "{F7BF4CA3-D2EE-4F07-B7C8-E9C654E18976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.BL", "ToDoList.BL\ToDoList.BL.csproj", "{7C689135-5E70-478E-BECB-08E3FEC55486}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList.BL", "ToDoList.BL\ToDoList.BL.csproj", "{7C689135-5E70-478E-BECB-08E3FEC55486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListPresenter", "ToDoListPresenter\ToDoListPresenter.csproj", "{4FFA5278-C2C8-477D-A2C7-33288696A89E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7C689135-5E70-478E-BECB-08E3FEC55486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C689135-5E70-478E-BECB-08E3FEC55486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C689135-5E70-478E-BECB-08E3FEC55486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FFA5278-C2C8-477D-A2C7-33288696A89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FFA5278-C2C8-477D-A2C7-33288696A89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FFA5278-C2C8-477D-A2C7-33288696A89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FFA5278-C2C8-477D-A2C7-33288696A89E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
