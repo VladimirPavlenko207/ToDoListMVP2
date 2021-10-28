@@ -1,8 +1,12 @@
+using MessageServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ToDoList.BL;
+using ToDoList.BL.Managers;
+using ToDoListPresenter;
 
 namespace ToDoListWForms
 {
@@ -17,7 +21,13 @@ namespace ToDoListWForms
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            ITopManager manager = new TopManager(new TagManager(), new CategoryManager(), new TaskManager());
+            MainForm view = new();
+            IMessageService messageService = new MessageService();
+            MainPresenter presenter = new(view, manager, messageService, "http://localhost:16808/api/");
+
+            Application.Run(view);
         }
     }
 }
