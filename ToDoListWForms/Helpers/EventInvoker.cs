@@ -7,7 +7,7 @@ using ToDoList.BL.Models.Requests;
 
 namespace ToDoListWForms.Helpers
 {
-    public static class EventInvoker
+    internal static class EventInvoker
     {
         internal static Func<Task<bool>> InvokeAddNewCategoryClick(Func<CategoryRequestModel, Task<bool>> addNewCategoryClick, CategoryRequestModel currentCategory)
         {

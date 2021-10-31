@@ -12,6 +12,8 @@ namespace ToDoListWForms
 {
     static class Program
     {
+        private const string Url = "http://localhost:16808/api/";
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -25,7 +27,7 @@ namespace ToDoListWForms
             ITopManager manager = new TopManager(new TagManager(), new CategoryManager(), new TaskManager());
             MainForm view = new();
             IMessageService messageService = new MessageService();
-            MainPresenter presenter = new(view, manager, messageService, "http://localhost:16808/api/");
+            _ = new MainPresenter(view, manager, messageService, Url);
 
             Application.Run(view);
         }

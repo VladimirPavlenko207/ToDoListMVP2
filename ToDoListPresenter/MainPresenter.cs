@@ -11,6 +11,9 @@ using ToDoListPresenter.Helpers;
 
 namespace ToDoListPresenter
 {
+    /// <summary>
+    /// Главный презентер, взаимодействующий с IView с помощью ITopManager и IMessageService.
+    /// </summary>
     public class MainPresenter
     {
         private readonly IView view;
@@ -22,6 +25,13 @@ namespace ToDoListPresenter
         private List<TagResponseModel> Tags { get; set; }
         private List<CategoryResponseModel> Categories { get; set; }
 
+        /// <summary>
+        /// Конструктор, принимающий ссылки на IView, ITopManager, IMessageService, адрес url.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <param name="manager"></param>
+        /// <param name="messageService"></param>
+        /// <param name="url"></param>
         public MainPresenter(IView view, ITopManager manager, IMessageService messageService, string url)
         {
             this.manager = manager;

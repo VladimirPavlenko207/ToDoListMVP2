@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 namespace ToDoListWForms.Enums
 {
+    /// <summary>
+    /// Представляет режимы CRUD.
+    /// </summary>
     public enum CrudMode
     {
+        /// <summary>
+        /// Режим просмотра.
+        /// </summary>
         View,
+        /// <summary>
+        /// Режим добавления.
+        /// </summary>
         Add,
+        /// <summary>
+        /// Режим редактирования.
+        /// </summary>
         Edit,
-        remove
+        /// <summary>
+        /// Режим удаления.
+        /// </summary>
+        Remove
     }
 }

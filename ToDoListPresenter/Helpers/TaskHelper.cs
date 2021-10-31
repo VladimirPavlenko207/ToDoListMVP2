@@ -25,8 +25,8 @@ namespace ToDoListPresenter.Helpers
         internal static List<TaskResponseModel> FilterByTagAndCategory(List<TaskResponseModel> tasks, string tagName, string categoryName)
         {
             if (string.IsNullOrEmpty(categoryName) && string.IsNullOrEmpty(tagName)) return tasks;
-            if (string.IsNullOrEmpty(categoryName) && !string.IsNullOrEmpty(tagName)) return ByTag(tasks, tagName);
-            if (!string.IsNullOrEmpty(categoryName) && string.IsNullOrEmpty(tagName)) return ByCategory(tasks, categoryName);
+            if (string.IsNullOrEmpty(categoryName)) return ByTag(tasks, tagName);
+            if (string.IsNullOrEmpty(tagName)) return ByCategory(tasks, categoryName);
             return ByCategory(ByTag(tasks, tagName), categoryName);
         }
 

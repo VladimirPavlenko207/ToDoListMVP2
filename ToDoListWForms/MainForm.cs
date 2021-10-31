@@ -13,7 +13,9 @@ using ToDoListWForms.Helpers;
 
 namespace ToDoListWForms
 {
-
+    /// <summary>
+    /// Главное окно приложения.
+    /// </summary>
     public partial class MainForm : Form, IView
     {
         private TaskResponseModel currentTask;
@@ -25,43 +27,98 @@ namespace ToDoListWForms
         private CrudMode tagMode;
         private CrudMode categoryMode;
 
-        private CrudMode TaskMode { set => SetTaskMode(value); }
-        private CrudMode TagMode { set => SetTagMode(value); }
-        private CrudMode CategoryMode { set => SetCategoryMode(value); }
+        private CrudMode TaskMode { get => taskMode; set => SetTaskMode(value); }
+        private CrudMode TagMode { get => tagMode; set => SetTagMode(value); }
+        private CrudMode CategoryMode { get => categoryMode; set => SetCategoryMode(value); }
 
+        /// <summary>
+        /// Конструктор главного онка MainForm
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
         #region IView
+        /// <summary>
+        /// Текущая задача.
+        /// </summary>
         public TaskResponseModel CurrentTask
         {
             get => currentTask;
             set => SetCurrentTask(value);
         }
 
+        /// <summary>
+        /// Текущая категория.
+        /// </summary>
         public CategoryResponseModel CurrentCategory { get; set; }
+        /// <summary>
+        /// Текущая метка.
+        /// </summary>
         public TagResponseModel CurrentTag { get; set; }
 
+        /// <summary>
+        /// Событее, при котором текущая метка изменилась.
+        /// </summary>
         public event Action<string> CurrentTagChenged;
+        /// <summary>
+        /// Событие, при котором текущая категория изменилась.
+        /// </summary>
         public event Action<string> CurrentCategoryChenged;
+        /// <summary>
+        /// Событие, при котором текущая задача изменилась.
+        /// </summary>
         public event Action<int> CurrentTaskChenged;
 
+        /// <summary>
+        /// Событие, при которомт добавляется в базу данных новая метка.
+        /// </summary>
         public event Func<TagRequestModel, Task<bool>> AddNewTagClick;
+        /// <summary>
+        /// Событие, при которомт добавляется в базу данных новая категория.
+        /// </summary>
         public event Func<CategoryRequestModel, Task<bool>> AddNewCategoryClick;
+        /// <summary>
+        /// Событие, при которомт добавляется в базу данных новая задача.
+        /// </summary>
         public event Func<TaskRequestModel, Task<bool>> AddNewTaskClick;
 
+        /// <summary>
+        /// Событие, при которомт редактируется данная метка и сохраняется в базе данных.
+        /// </summary>
         public event Func<TagRequestModel, Task<bool>> EditTagClick;
+        /// <summary>
+        /// Событие, при которомт редактируется данная категория и сохраняется в базе данных.
+        /// </summary>
         public event Func<CategoryRequestModel, Task<bool>> EditCategoryClick;
+        /// <summary>
+        /// Событие, при которомт редактируется данная задача и сохраняется в базе данных.
+        /// </summary>
         public event Func<TaskRequestModel, Task<bool>> EditTaskClick;
 
+        /// <summary>
+        /// Событие, при которомт удаляется данная метка из базы данных.
+        /// </summary>
         public event Func<TagResponseModel, Task<bool>> RemoveTagClick;
+        /// <summary>
+        /// Событие, при которомт удаляется данная категория из базы данных.
+        /// </summary>
         public event Func<CategoryResponseModel, Task<bool>> RemoveCategoryClick;
+        /// <summary>
+        /// Событие, при которомт удаляется данная задача из базы данных.
+        /// </summary>
         public event Func<TaskResponseModel, Task<bool>> RemoveTaskClick;
 
+        /// <summary>
+        /// Событие, при котором загружаются все данные из базы данных.
+        /// </summary>
         public event Action TotalLoading;
 
+        /// <summary>
+        /// Метод получения всех меток в виде массива названий меток.
+        /// </summary>
+        /// <param name="tagNames"></param>
         public void SetTags(string[] tagNames)
         {
             comboBoxTags.Items.Clear();
@@ -74,6 +131,10 @@ namespace ToDoListWForms
             comboBoxRightTags.Items.AddRange(tagNames);
         }
 
+        /// <summary>
+        /// Метод получения всех категорий в виде массива названий категорий.
+        /// </summary>
+        /// <param name="categoryNames"></param>
         public void SetCategories(string[] categoryNames)
         {
             comboBoxCategorys.Items.Clear();
@@ -86,6 +147,10 @@ namespace ToDoListWForms
             comboBoxRightCat.Items.AddRange(categoryNames);
         }
 
+        /// <summary>
+        /// Метод получения всех задач в виде списка объектов TaskResponseModel.
+        /// </summary>
+        /// <param name="tasks"></param>
         public void SetTasks(List<TaskResponseModel> tasks)
         {
             dataGridView1.Rows.Clear();
@@ -107,6 +172,9 @@ namespace ToDoListWForms
             }
         }
 
+        /// <summary>
+        /// Метод для завершения работы приложения.
+        /// </summary>
         public void Exit()
         {
             Application.Exit();
@@ -139,14 +207,14 @@ namespace ToDoListWForms
             SetCategoryUpdate();
             if (e.KeyCode is Keys.Enter)
             {
-                var result = await CategoryUpdate?.Invoke();
+                _ = await CategoryUpdate?.Invoke();
                 CategoryMode = CrudMode.View;
             }
         }
 
         private void buttonAddCategory_Click(object sender, EventArgs e)
         {
-            CategoryMode = categoryMode == CrudMode.Add ? CrudMode.View : CrudMode.Add;
+            CategoryMode = CategoryMode == CrudMode.Add ? CrudMode.View : CrudMode.Add;
         }
 
         private void buttonRemoveCategory_Click(object sender, EventArgs e)
@@ -157,7 +225,7 @@ namespace ToDoListWForms
 
         private void buttonEditCategory_Click(object sender, EventArgs e)
         {
-            CategoryMode = categoryMode == CrudMode.Edit ? CrudMode.View : CrudMode.Edit;
+            CategoryMode = CategoryMode == CrudMode.Edit ? CrudMode.View : CrudMode.Edit;
         }
 
         #endregion
@@ -208,7 +276,7 @@ namespace ToDoListWForms
         #region Current task hendlers
         private void textBoxRightTask_TextChanged(object sender, EventArgs e)
         {
-
+       
         }
 
         private void comboBoxRightCat_SelectedIndexChanged(object sender, EventArgs e)
@@ -305,8 +373,8 @@ namespace ToDoListWForms
 
         private void buttonAddTag_Click(object sender, EventArgs e)
         {
-            TagMode = tagMode == CrudMode.Add ? CrudMode.View : CrudMode.Add;
-            if (tagMode != CrudMode.Add) return;
+            TagMode = TagMode == CrudMode.Add ? CrudMode.View : CrudMode.Add;
+            if (TagMode != CrudMode.Add) return;
 
             var newTag = new TagRequestModel { Name = textBoxTag.Text };
             TagUpdate = EventInvoker.InvokeAddNewTagClick(AddNewTagClick, newTag);
@@ -319,8 +387,8 @@ namespace ToDoListWForms
 
         private void buttonEditTag_Click(object sender, EventArgs e)
         {
-            TagMode = tagMode == CrudMode.Edit ? CrudMode.View : CrudMode.Edit;
-            if (tagMode != CrudMode.Edit) return;
+            TagMode = TagMode == CrudMode.Edit ? CrudMode.View : CrudMode.Edit;
+            if (TagMode != CrudMode.Edit) return;
 
             var newTag = new TagRequestModel { Name = comboBoxTags.Text, NewName = textBoxTag.Text };
             TagUpdate = EventInvoker.InvokeEditTagClick(EditTagClick, newTag);
@@ -331,7 +399,7 @@ namespace ToDoListWForms
             SetTagUpdate();
             if (e.KeyCode is Keys.Enter)
             {
-                var result = await TagUpdate?.Invoke();
+                _ = await TagUpdate?.Invoke();
                 TagMode = CrudMode.View;
             }
         }
@@ -347,7 +415,7 @@ namespace ToDoListWForms
         private void SetTaskMode(CrudMode value)
         {
             taskMode = value;
-            switch (taskMode)
+            switch (TaskMode)
             {
                 case CrudMode.View:
                     SetTaskControlsState(false, true, false);
@@ -391,13 +459,13 @@ namespace ToDoListWForms
                 IsComplete = Convert.ToBoolean(comboBoxRightState.SelectedIndex),
                 TagsNames = listBoxRightTags.Items.OfType<string>().ToList()
             };
-            if (taskMode == CrudMode.Edit) task.Id = currentTask.Id;
+            if (TaskMode == CrudMode.Edit) task.Id = currentTask.Id;
             return task;
         }
 
         private void SetTaskUpdate()
         {
-            switch (taskMode)
+            switch (TaskMode)
             {
                 case CrudMode.Add:
                     TaskUpdate = EventInvoker.InvokeAddNewTaskClick(AddNewTaskClick, GetNewTask());
@@ -436,7 +504,7 @@ namespace ToDoListWForms
         {
             tagMode = value;
             textBoxTag.Clear();
-            switch (tagMode)
+            switch (TagMode)
             {
                 case CrudMode.View:
                     bool flag = comboBoxTags.SelectedIndex > 0;
@@ -464,7 +532,7 @@ namespace ToDoListWForms
         private void SetTagUpdate()
         {
             var newTag = new TagRequestModel();
-            switch (tagMode)
+            switch (TagMode)
             {
                 case CrudMode.Add:
                     newTag.Name = textBoxTag.Text;
@@ -484,7 +552,7 @@ namespace ToDoListWForms
         {
             categoryMode = value;
             textBoxCategory.Clear();
-            switch (categoryMode)
+            switch (CategoryMode)
             {
                 case CrudMode.View:
                     bool flag = comboBoxCategorys.SelectedIndex > 0;
@@ -512,7 +580,7 @@ namespace ToDoListWForms
         private void SetCategoryUpdate()
         {
             var newCategory = new CategoryRequestModel();
-            switch (categoryMode)
+            switch (CategoryMode)
             {
                 case CrudMode.Add:
                     newCategory.Name = textBoxCategory.Text;
@@ -525,8 +593,6 @@ namespace ToDoListWForms
                     break;
             }
         }
-
         #endregion
-
     }
 }

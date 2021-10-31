@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ToDoListWForms.Helpers
 {
-    public static class TextEditor
+    internal static class TextEditor
     {
-        public static bool IsWordInArray(string[] array, string word)
+        internal static bool IsWordInArray(string[] array, string word)
         {
             return array.Any(a => a == word);
         }
 
-        public static string ReduceRowToN(string row, int n)
+        internal static string ReduceRowToN(string row, int n)
         {
             if (row.Length < n) return row;
             return $"{row.Substring(0, n)}...";

@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToDoListPresenter</name>
+    </assembly>
+    <members>
+        <member name="T:ToDoListPresenter.IView">
+            <summary>
+            Представляет оконный интерфейс приложения.
+            </summary>
+        </member>
+        <member name="P:ToDoListPresenter.IView.CurrentCategory">
+            <summary>
+            Текущая категория.
+            </summary>
+        </member>
+        <member name="P:ToDoListPresenter.IView.CurrentTag">
+            <summary>
+            Текущая метка.
+            </summary>
+        </member>
+        <member name="P:ToDoListPresenter.IView.CurrentTask">
+            <summary>
+            Текущая задача.
+            </summary>
+        </member>
+        <member name="M:ToDoListPresenter.IView.SetTags(System.String[])">
+            <summary>
+            Метод, устанавливающий метки полученные в виде массива названий меток.
+            </summary>
+            <param name="tagNames"></param>
+        </member>
+        <member name="M:ToDoListPresenter.IView.SetCategories(System.String[])">
+            <summary>
+            Метод, устанавливающий категории полученные в виде массива названий категорий.
+            </summary>
+            <param name="categoryNames"></param>
+        </member>
+        <member name="M:ToDoListPresenter.IView.SetTasks(System.Collections.Generic.List{ToDoList.BL.Models.Responses.TaskResponseModel})">
+            <summary>
+            Метод, устанавливающий задачи полученные в виде списка TaskResponseModel.
+            </summary>
+            <param name="tasks"></param>
+        </member>
+        <member name="M:ToDoListPresenter.IView.Exit">
+            <summary>
+            Метод завершения приложения.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.TotalLoading">
+            <summary>
+            Событие, при котором загружаются все модели.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.CurrentTagChenged">
+            <summary>
+            Событие, при котором текущая метка изменилась.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.CurrentCategoryChenged">
+            <summary>
+            Событие, при котором текущая категория изменилась.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.CurrentTaskChenged">
+            <summary>
+            Событие, при котором текущая задача изменилась.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.AddNewTagClick">
+            <summary>
+            Событие, при котором добавляется новая метка и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.AddNewCategoryClick">
+            <summary>
+            Событие, при котором добавляется новая категория и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.AddNewTaskClick">
+            <summary>
+            Событие, при котором добавляется новая задача и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.EditTagClick">
+            <summary>
+            Событие, при котором редактируется данная метка и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.EditCategoryClick">
+            <summary>
+            Событие, при котором редактируется данная категория и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.EditTaskClick">
+            <summary>
+            Событие, при котором редактируется данная задача и сохраняется в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.RemoveTagClick">
+            <summary>
+            Событие, при котором удаляется данная метка и изменения сохраняются в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.RemoveCategoryClick">
+            <summary>
+            Событие, при котором удаляется данная категория и изменения сохраняются в базе данных.
+            </summary>
+        </member>
+        <member name="E:ToDoListPresenter.IView.RemoveTaskClick">
+            <summary>
+            Событие, при котором удаляется данная задача и изменения сохраняются в базе данных.
+            </summary>
+        </member>
+        <member name="T:ToDoListPresenter.MainPresenter">
+            <summary>
+            Главный презентер, взаимодействующий с IView с помощью ITopManager и IMessageService.
+            </summary>
+        </member>
+        <member name="M:ToDoListPresenter.MainPresenter.#ctor(ToDoListPresenter.IView,ToDoList.BL.ITopManager,MessageServices.IMessageService,System.String)">
+            <summary>
+            Конструктор, принимающий ссылки на IView, ITopManager, IMessageService, адрес url.
+            </summary>
+            <param name="view"></param>
+            <param name="manager"></param>
+            <param name="messageService"></param>
+            <param name="url"></param>
+        </member>
+    </members>
+</doc>

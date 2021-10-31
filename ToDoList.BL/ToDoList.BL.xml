@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ToDoList.BL</name>
+    </assembly>
+    <members>
+        <member name="T:ToDoList.BL.Helpers.RequestsSender">
+            <summary>
+            Статический класс для работы по отправке запросов
+            </summary>
+        </member>
+        <member name="M:ToDoList.BL.Helpers.RequestsSender.ClientExecuter``1(System.Int32,System.String,``0)">
+            <summary>
+            Выполнение запроса клиентом
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="methodCode">целочисленное представление метода из <see cref="T:RestSharp.Method"/></param>
+            <param name="url">Путь</param>
+            <param name="obj">Объект для отправки запроса</param>
+            <returns>Возаращает объект <see cref="T:RestSharp.IRestResponse"/></returns>
+        </member>
+        <member name="M:ToDoList.BL.Helpers.RequestsSender.ClientExecuter(System.Int32,System.String)">
+            <summary>
+            /// Выполнение запроса клиентом
+            </summary>
+            <param name="methodCode">целочисленное представление метода из <see cref="T:RestSharp.Method"/></param>
+            <param name="url">Путь</param>
+            <returns>Возаращает объект <see cref="T:RestSharp.IRestResponse"/></returns>
+        </member>
+        <member name="M:ToDoList.BL.Helpers.RequestsSender.GetDeserializedObject``1(``0,System.String)">
+            <summary>
+            Получает десериализованный json объект
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">Объект для определения типа объекта </param>
+            <param name="json">Строка json</param>
+            <returns>Десериализованный объект Т типа</returns>
+        </member>
+        <member name="T:ToDoList.BL.ITopManager">
+            <summary>
+            Представляет главный менеджер по управлению менеджерами задач, меток и категорий.
+            </summary>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.AddCategoryAsync(System.String,ToDoList.BL.Models.Requests.CategoryRequestModel)">
+            <summary>
+            Асинхронное добавление категории.
+            </summary>
+            <param name="url"></param>
+            <param name="cat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.AddTagAsync(System.String,ToDoList.BL.Models.Requests.TagRequestModel)">
+            <summary>
+            Асинхронное добавление метки.
+            </summary>
+            <param name="url"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.AddTaskAsync(System.String,ToDoList.BL.Models.Requests.TaskRequestModel)">
+            <summary>
+            Асинхронное добавление задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.EditCategoryAsync(System.String,ToDoList.BL.Models.Requests.CategoryRequestModel)">
+            <summary>
+            Асинхронное редактирование категории.
+            </summary>
+            <param name="url"></param>
+            <param name="cat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.EditTagAsync(System.String,ToDoList.BL.Models.Requests.TagRequestModel)">
+            <summary>
+            Асинхронное редактирование метки.
+            </summary>
+            <param name="url"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.EditTaskAsync(System.String,ToDoList.BL.Models.Requests.TaskRequestModel)">
+            <summary>
+            Асинхронное редактирование задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.LoadCategoriesAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.CategoryResponseModel})">
+            <summary>
+            Асинхронная загрузка списка категорий.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.LoadTagsAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.TagResponseModel})">
+            <summary>
+            Асинхронная загрузка списка меток.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.LoadTasksAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.TaskResponseModel})">
+            <summary>
+            Асинхронная загрузка списка задач.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.RemoveCategoryAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронная удаление категории.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.RemoveTagAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронная удаление метки.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.ITopManager.RemoveTaskAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронная удаление задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ToDoList.BL.Managers.IManager">
+            <summary>
+            Представляет менеджер для работы с сущностями.
+            </summary>
+        </member>
+        <member name="M:ToDoList.BL.Managers.IManager.Load``1(System.String,System.Collections.Generic.List{``0})">
+            <summary>
+            Универсальный метод загрузки списка сущностей с сервера по адресу url.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.Managers.IManager.Add``1(System.String,``0)">
+            <summary>
+            Универсальный метод добавления екземпляра сущности на сервер по адресу url.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.Managers.IManager.Edit``1(System.String,``0)">
+            <summary>
+            Универсальный метод редактирования екземпляра сущности и сохранения его на сервере по адресу url.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.Managers.IManager.Remove(System.String,System.Int32)">
+            <summary>
+            Универсальный метод удаления екземпляра сущности с серверф по адресу url.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ToDoList.BL.Models.Requests.CategoryRequestModel">
+            <summary>
+            Модель запросов категории
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.CategoryRequestModel.Name">
+            <summary>
+            Имя категории
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.CategoryRequestModel.NewName">
+            <summary>
+            Новое имя категории
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.Models.Requests.TagRequestModel">
+            <summary>
+            Модель запроса метки
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TagRequestModel.Name">
+            <summary>
+            Имя метки
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TagRequestModel.NewName">
+            <summary>
+            Новое имя метки
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.Models.Requests.TaskRequestModel">
+            <summary>
+            Модель запроса задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.Id">
+            <summary>
+            Id задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.Description">
+            <summary>
+            Описание задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.Priority">
+            <summary>
+            Приоритет задачи выраженное целым числом из <see cref="T:System.Threading.ThreadPriority"/>
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.Deadline">
+            <summary>
+            Строковое представление конечной даты  
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.IsComplete">
+            <summary>
+            Логическое значение завершенности задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.CategoryName">
+            <summary>
+            Имя категории задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Requests.TaskRequestModel.TagsNames">
+            <summary>
+            Список имен меток для задачи
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.Models.Responses.CategoryResponseModel">
+            <summary>
+            Модель получения категории
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.CategoryResponseModel.Id">
+            <summary>
+            Id категории
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.CategoryResponseModel.Name">
+            <summary>
+            Имя категории
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.Models.Responses.TagResponseModel">
+            <summary>
+            Модель получения метки
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TagResponseModel.Id">
+            <summary>
+            Id метки
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TagResponseModel.Name">
+            <summary>
+            Имя метки
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TagResponseModel.Tasks">
+            <summary>
+            Список задач данной метки
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.Models.Responses.TaskResponseModel">
+            <summary>
+            Модель получения задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Id">
+            <summary>
+            Id задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Description">
+            <summary>
+            Описание задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Priority">
+            <summary>
+            Приоритет задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Deadline">
+            <summary>
+            Конечная дата завершения задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.IsComplete">
+            <summary>
+            Завершена ли задача
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Category">
+            <summary>
+            Категория задачи
+            </summary>
+        </member>
+        <member name="P:ToDoList.BL.Models.Responses.TaskResponseModel.Tags">
+            <summary>
+            Список меток данной задачи
+            </summary>
+        </member>
+        <member name="T:ToDoList.BL.TopManager">
+            <summary>
+            Главный менеджер по управлению менеджерами задач, меток и категорий.
+            </summary>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.#ctor(ToDoList.BL.Managers.IManager,ToDoList.BL.Managers.IManager,ToDoList.BL.Managers.IManager)">
+            <summary>
+            Конструктор главного менеджера, принимает ссылку на менеджеры меток, категорий и задач.
+            </summary>
+            <param name="tagManager"></param>
+            <param name="categoryManager"></param>
+            <param name="taskManager"></param>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.LoadTagsAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.TagResponseModel})">
+            <summary>
+            Асинхронный метод загрузки списка меток.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.AddTagAsync(System.String,ToDoList.BL.Models.Requests.TagRequestModel)">
+            <summary>
+            Асинхронный метод добавления метки.
+            </summary>
+            <param name="url"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.EditTagAsync(System.String,ToDoList.BL.Models.Requests.TagRequestModel)">
+            <summary>
+            Асинхронный метод редактирования метки.
+            </summary>
+            <param name="url"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.RemoveTagAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронный метод удаления метки.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.LoadCategoriesAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.CategoryResponseModel})">
+            <summary>
+            Асинхронный метод загрузки списка категорий.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.AddCategoryAsync(System.String,ToDoList.BL.Models.Requests.CategoryRequestModel)">
+            <summary>
+            Асинхронный метод добавления категории.
+            </summary>
+            <param name="url"></param>
+            <param name="cat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.EditCategoryAsync(System.String,ToDoList.BL.Models.Requests.CategoryRequestModel)">
+            <summary>
+            Асинхронный метод редактирования категории.
+            </summary>
+            <param name="url"></param>
+            <param name="cat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.RemoveCategoryAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронный метод удаления категории.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.LoadTasksAsync(System.String,System.Collections.Generic.List{ToDoList.BL.Models.Responses.TaskResponseModel})">
+            <summary>
+            Асинхронный метод загрузки списка задач.
+            </summary>
+            <param name="url"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.AddTaskAsync(System.String,ToDoList.BL.Models.Requests.TaskRequestModel)">
+            <summary>
+            Асинхронный метод добавления задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.EditTaskAsync(System.String,ToDoList.BL.Models.Requests.TaskRequestModel)">
+            <summary>
+            Асинхронный метод редактирования задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ToDoList.BL.TopManager.RemoveTaskAsync(System.String,System.Int32)">
+            <summary>
+            Асинхронный метод удаления задачи.
+            </summary>
+            <param name="url"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
